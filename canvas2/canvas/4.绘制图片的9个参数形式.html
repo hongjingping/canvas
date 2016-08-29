@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //1.创建img对象
+        var img = new Image();
+        //2.设置图片的路径
+        img.src = "img/rBACFFH1-B7DFB4PAAAYpkS1Sv4882_200x200_3.jpg";
+        //等页面加载后在进行显示
+       onload = function(){
+           var x = 0,y= 0,width=200,height=200;
+           //3.设置图片
+           ctx.drawImage(img,x,y,width,height,100,100,width,height);
+       }
+    }());
+</script>
+</body>
+</html>

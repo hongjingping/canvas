@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    //创建椭圆
+    var ellipse = new Konva.Ellipse({
+        x:stage.getWidth()/2,
+        y:stage.getHeight()/2,
+        radius:{
+            x:100,y:50
+        },
+        stroke:"red",
+        fill:"pink",
+        rotation:30
+    });
+    layer.add(ellipse);
+
+
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #dv {
+            border: 1px solid black;
+        }
+    </style>
+    <script src="..."></script>
+</head>
+<body>
+<div id="dv"></div>
+</body>
+<script>
+
+    // 创建一个舞台
+    var stage = new Konva.Stage({
+        width: 600,
+        height: 400,
+        container: 'dv'
+    });
+
+    // 创建层
+    var layer = new Konva.Layer();
+
+
+    stage.add(layer);
+
+
+    // draw
+    layer.draw();
+
+</script>
+</html>

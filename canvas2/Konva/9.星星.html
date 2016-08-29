@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    //绘制星星
+    var star = new Konva.Star({
+        x:stage.getWidth()/2,
+        y:stage.getHeight()/2,
+        numPoints:6,
+        outerRadius:100,//外半径
+        innerRadius:50,//内半径
+        stroke:"red",
+        fill:"lightblue"
+
+    });
+    layer.add(star);
+
+    var tween = new Konva.Tween({
+        node:star,
+        rotation:360,
+        duration:5,
+        onFinish:function(){
+            this.reset();
+            this.play();
+        }
+    });
+    tween.play();
+
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

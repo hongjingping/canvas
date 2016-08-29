@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //1.获得img对象
+        var img = new Image();
+        //2.设置路径
+        img.src="img/士兵.png";
+        //3.设置图片
+        onload = function(){
+          function img1(){
+              //1.清除画布
+              canvas.width = canvas.width;
+              var width = img.width/4;
+              var height = img.height/4;
+              var x = width;
+              var y = height;
+              ctx.drawImage(img,x,y,width,height,100,100,width,height);
+          };
+            function img2(){
+                //1.清除画布
+                canvas.width = canvas.width;
+                var width = img.width/4;
+                var height = img.height/4;
+                var x = width*2;
+                var y = height;
+                ctx.drawImage(img,x,y,width,height,100,100,width,height);
+            }
+            //鼠标放上去的时候mousemove,因为是整个画布我们在move的时候一定要设置位置，佛欧泽就没效果
+            canvas.onmousemove = function (e) {
+                if(e.offsetX >= 100 && e.offsetX <= 180 &&
+                        e.offsetY >=100 && e.offsetY <= 180){
+                        img2();
+                }else{
+                    img1();
+                }
+            }
+
+
+
+        }
+
+    }());
+</script>
+</body>
+</html>

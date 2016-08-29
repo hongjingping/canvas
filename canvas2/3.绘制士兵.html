@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //ctx.drawImage(img,x,y,width,height,x,y,width,height)
+        //1.创建img标签
+        var img = new Image();
+        //2.路径
+        img.src="士兵.png";
+        //3.onload函数
+        onload = function(){
+            //3.1得到图片的宽、高的坐标
+            var width = img.width / 4;
+            var height = img.height / 4;
+            var x = 3 * width;//图片从0开始数
+            var y = 1 * height;
+            ctx.drawImage(img,x,y,width,height,100,100,img.width / 4,img.height / 4);
+        }
+
+    }());
+</script>
+</body>
+</html>

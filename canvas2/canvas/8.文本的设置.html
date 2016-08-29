@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //1,方法
+        //fillText(文本内容,x,y);实心字体，x,y表示文本放在按个位置
+        //strokeText(文本内容,x,y);空心字体，x,y表示文本放在哪个位置
+        //2.属性
+        //font "20px Mircosoft Yahei"
+        //textAlign "left center right"
+        //textBaseLine "top middle bottom"
+        //fillStyle
+        //strokeStyle
+
+
+
+
+
+    }());
+</script>
+</body>
+</html>

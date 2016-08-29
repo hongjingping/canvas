@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+
+    //绘制扇形
+    var data = [.1,.2,.3,.4];
+    var colors ="red,green,pink,blue".split(",");
+    var startAngle = -90;
+    data.forEach(function(v,i){
+        var wedge = new Konva.Wedge({
+            x:stage.getWidth()/2,
+            y:stage.getHeight()/2,
+            radius:100,
+            angle:startAngle + 360 * v,
+            rotation:startAngle,
+            fill:colors[i],
+            opacity:.7
+        });
+        startAngle += 360*v;
+        layer.add(wedge);
+    });
+
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

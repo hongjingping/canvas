@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //1.创建img对象
+        var img = new Image();
+        //2.设置图片的路径
+        img.src = "img/bg_v3.png";
+        //3.设置图片
+        onload= function () {
+            //图片1
+            function img1(){
+                canvas.width = canvas.width;
+                var x = 160,y = 530,width = 40,height=40;
+                ctx.drawImage(img,x,y,width,height,100,100,100,100);
+            }
+            function img2(){
+                canvas.width = canvas.width;
+                var x = 150,y = 450,width = 30,height= 30;
+                ctx.drawImage(img,x,y,width,height,100,100,100,100);
+            }
+            //设置onmousemove事件
+            canvas.onmousemove = function(e){
+                if(e.offsetX >=100 && e.offsetX <=200 &&
+                        e.offsetY >= 100 && e.offsetY<=200){
+                    img1();
+                }else {
+                    img2();
+                }
+            }
+        }
+
+    }());
+</script>
+</body>
+</html>

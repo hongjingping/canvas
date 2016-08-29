@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    //圆环
+    var ring = new Konva.Ring({
+        x:stage.getWidth()/2,
+        y:stage.getHeight()/2,
+        innerRadius:100,
+        outerRadius:200,
+        fill:"red",
+        stroke:"green",
+    });
+    layer.add(ring);
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

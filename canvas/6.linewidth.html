@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cas{
+            border:1px dashed red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cas" width="800" height="600"></canvas>
+<script>
+    //1.获得对象
+    var cas = document.getElementById("cas");
+    //2.获得画布
+    var ctx = cas.getContext("2d");
+    //3.
+    ctx.moveTo(100,100);
+    ctx.lineTo(200,100);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.lineWidth = 10;
+    //ctx.lineCap = "round";//圆帽子
+    //ctx.lineCap = "squre";//方帽子
+    ctx.lineCap = "butt";//默认
+    ctx.moveTo(100,200);
+    ctx.lineTo(200,200);
+    ctx.stroke();
+</script>
+</body>
+</html>

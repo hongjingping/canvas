@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //1.创建舞台
+    var stage = new Konva.Stage({
+        width:window.innerWidth,
+        height:window.innerHeight,
+        container:"dv"
+    });
+    //2.创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+    //3.自定义绘制图像
+    var  triangle = new Konva.Shape({
+        sceneFunc:function(ctx){
+            //自定义绘制路径
+            ctx.moveTo(window.innerWidth/2,window.innerHeight/4);
+            ctx.lineTo(window.innerWidth/4,window.innerHeight/2);
+            ctx.lineTo(window.innerWidth/4*3,window.innerHeight/2);
+            ctx.closePath();
+            //Konva独有的
+            ctx.fillStrokeShape(this);
+        },
+        fill:"red",
+        stroke:"pink"
+    });
+    layer.add(triangle);
+    layer.draw();
+</script>
+</body>
+</html>

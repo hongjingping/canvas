@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    //创建文本
+    var text = new Konva.Text({
+        x:100,
+        y:100,
+        align:"center",
+        text:"萍宝贝",
+        fontSize:"30",
+        padding:10,
+        width:200,
+        height:200
+    });
+    layer.add(text);
+
+    var rect = new Konva.Rect({
+        x:150,y:100,
+        width:100,height:100,
+        stroke:"green"
+    });
+    layer.add(rect);
+
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

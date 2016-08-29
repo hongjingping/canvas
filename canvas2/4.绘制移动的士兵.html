@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //1.创建img标签
+        var img = new Image();
+        //2.图片路径
+        img.src = "士兵.png";
+      onload = function(){
+
+          var iX = 0;//设置小图片的行的索引
+          var width = img.width/4;
+          var height = img.height/4;
+
+          var xb = 600;//设置x轴的距离最大值为600
+          var mark = 1;//设置反向运动
+          var iY = 1;//1行与2行的切换
+          //3.设置参数
+          //设置定时器，让每隔20秒更换一个图片，就会形成动画
+          setInterval(function(){
+              var x = iX * width;//变量(位置的移动)
+              var y = iY * height;//变量(位置的移动)
+              //将图片清除干净
+              canvas.width = canvas.width;
+              //设置x轴上的变化，每次移动3
+              ctx.drawImage(img,x,y,width,height,xb -= 3*mark,100,width,height);//x轴上方向有正负运动
+              //设置ix的值(本图中ix的最大值是3)
+              iX = iX == 3?0 : ++iX;//将++放在前面
+
+              //进行判断(临界点的位置应该反向运动)
+              if(xb<=-width || xb>= 600){
+                  mark = -1*mark;
+                  iY = mark === 1?1:2;//1行与2行的切换
+              }
+
+          },20)
+      };
+
+    }());
+</script>
+</body>
+</html>

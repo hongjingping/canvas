@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    var shape = new Konva.RegularPolygon({
+        x:200,y:200,
+        sides:5,
+        radius:100,
+        fill:"pink",
+        stroke:"green"
+    });
+    layer.add(shape);
+
+
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

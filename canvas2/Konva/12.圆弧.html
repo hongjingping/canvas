@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    //圆弧
+    var arc = new Konva.Arc({
+        x:100,
+        y:200,
+        innerRadius:70,
+        outerRadius:100,
+        stroke:"green",
+        fill:"blue",
+        angle:190,
+        rotation:-90
+    });
+    layer.add(arc);
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

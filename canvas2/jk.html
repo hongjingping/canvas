@@ -1,0 +1,72 @@
+## Konva 是一个完全面向对象的框架
+所以任何东西都是一个对象. 如果要绘制一个矩形就是创建一个 Rect 对象
+
+1. 导入 Konva 库
+2. 在页面中放置一个容器( div )
+3. 写 js 代码
+* 创建一个舞台 Stage
+* 在 Konva 中 Konva 是一个全局的命名空间( 对象 ), 所有的方法, 构造函数, 属性等 都是这个对象的成员.
+* var stage = new Konva.Stage();
+* 创建的时候需要给他提供属性: width, height, container
+4. 绘制矩形就创建一个矩形对象
+* var rect = new Konva.Rect();
+* 参数: x,y,width,height
+5. 创建层
+* var layer = new Konva.Layer();
+6. 添加的方法 add
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #dv { border: 1px solid black; }
+    </style>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+</body>
+<script>
+
+    // 创建一个舞台
+    var stage = new Konva.Stage({
+        width: 600,
+        height: 400,
+        container: 'dv'
+    });
+
+    // 创建层
+    var layer = new Konva.Layer();
+
+    // 添加
+    // layer.add( rect );
+    stage.add( layer );
+
+    // 创建一个矩形
+    var rect = new Konva.Rect({
+        x: 100,
+        y: 100,
+        width: 200,
+        height: 100,
+        stroke: 'red'
+    });
+
+    layer.add( rect );
+
+
+
+    //		// 创建层
+    //		var layer = new Konva.Layer();
+    //
+    //		// 添加
+    //		layer.add( rect );
+    //		stage.add( layer );
+
+
+    // draw
+    layer.draw();
+
+</script>
+</html>

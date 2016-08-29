@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: "dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    //线段
+    var line = new Konva.Line({
+        x:100,y:100,
+        points:[10,0,100,100,200,0],//存储折线各个点的坐标
+        tension:1,//表示曲线连线
+        stroke:"red"
+    });
+    layer.add(line);
+
+    var rect = new Konva.Line({
+        x:300,y:100,
+        points:[0,0,100,0,100,100,0,100],
+        closed:true,
+        stroke:"red"
+    });
+    layer.add(rect);
+
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

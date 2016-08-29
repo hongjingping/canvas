@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid red";
+        //1.创建img标签
+        var img = new Image();
+        //2.设置img的路径
+        img.src="../士兵.png";
+        //3.书写JS代码ctx.drawImage(img,x,y,width,height,x,y,width,height);前面4个是图片的，后面4个是canvas坐标的
+        onload = function(){
+            var width = img.width/4;
+            var height = img.height/4;
+            var ix = 0;
+            //设置x轴的最大长度为600，设置一个标记为1，当到达距离的时候反向运动
+            var xb = 600;
+            var mark = 1;
+            var iY = 1;//让图片在1和2之间变换
+            //设置定时器，每秒钟移动
+            setInterval(function(){
+                var x = ix*img.width/4;//大图正好被各个小兵分开，我们每个小兵占据的尺寸一样大小
+                var y = iY*img.height/4;
+
+
+                ctx.clearRect(0,0,canvas.width,canvas.height);//清除画布
+                ctx.drawImage(img,x,y,width,height,xb -= 4*mark,100,width,height);//设置x轴每次移动4
+                ix = ix ===3 ? 0 : ++ix;//ix的最大值为3，当等于3的时候变为0
+                //进行判断
+                if( xb<0 || xb>=600){
+                    mark = -1*mark;//设置为-1
+                    iY = iY==1?2:1;//当iY为1的时候变为2，否则还是1
+                }
+            },30)
+        }
+    }());
+</script>
+</body>
+</html>

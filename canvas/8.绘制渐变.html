@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cas" width="800" height="600"></canvas>
+<script>
+    //1.获得对象
+    var cas = document.getElementById("cas");
+    //2.获得画布
+    var ctx = cas.getContext("2d");
+    //4.我们要绘制0-255（256个点），每个点设置2个像素，总长度512
+    //5.通过for循环，循环255次即可
+    //设置宽度
+    ctx.lineWidth=100;
+    //X轴的起始位置是40
+    var startX = 40;
+    for(var i=0;i<255;i++){
+        //6.每一个都是新的开始
+        ctx.beginPath();
+        //7.起始点
+        ctx.moveTo(startX,100);
+        ctx.lineTo(startX = 40+i*2,100);
+        ctx.strokeStyle="rgb("+i+",0,0)";
+        ctx.stroke();
+    }
+</script>
+</body>
+</html>

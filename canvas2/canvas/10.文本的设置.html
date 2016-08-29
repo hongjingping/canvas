@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //将画布分成九宫格，然后每个格子中的位置为点的位置，计算左上的点的宽高。就可以计算出每个点的坐标
+        var leftWidth = canvas.width/6;
+        var leftHeight = canvas.height/6;
+
+        //绘制点
+        var arr = [];
+        ctx.fillStyle="blue";
+        for(var i=0;i<3;i++){//计算行
+            for(var j=0;j<3;j++){//计算列
+                //绘制点
+                ctx.fillRect(leftWidth+2*j*leftWidth,
+                            leftHeight+2*i*leftHeight,8,8);
+                //将每个点的坐标存放在数组中
+                arr.push({
+                    x:leftWidth+2*j*leftWidth,
+                    y:leftHeight+2*i*leftHeight
+                })
+            }
+        }
+        //2.写一个循环绘制文字
+        ctx.beginPath();
+        ctx.fillStyle="red";
+        ctx.font = "20px Microsoft Yahei";
+        
+        //将每列的值存到数组中
+        var rows = "left,center,right".split(",");
+        var columns = "top,middle,bottom".split(",");
+        
+        //通过循环绘制文字
+        arr.forEach(function (v,i) {
+            //i的取值是0-8，parseInt(i/3)是行数，i%3是列数
+            ctx.textAlign = rows[i%3];
+            ctx.textBaseline = columns[parseInt(i/3)];
+            ctx.fillText("国际邮轮", v.x, v.y);
+        })
+
+    }());
+</script>
+</body>
+</html>

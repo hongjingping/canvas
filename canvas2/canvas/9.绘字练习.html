@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+        //绘制左上....右下的9个位置的内容
+
+        //1.绘制9个点,左上角第一个点的坐标
+        var leftWidth = canvas.width/6;
+        var topHeight = canvas.height/6;
+        //1.1将点放到数组里面
+        var arr = [];
+        ctx.fillStyle = "red";
+        for(var i=0;i<3;i++){
+            for(var j=0;j<3;j++){
+                //绘制第i行的第j个点
+                ctx.fillRect(leftWidth+2*j*leftWidth,
+                             topHeight+2*i*topHeight,
+                             8,8);
+                arr.push({x:leftWidth+2*j*leftWidth,
+                          y:topHeight+2*i*topHeight})
+            }
+        }
+        //2.写一个循环绘制文字
+        ctx.beginPath();
+        ctx.fillStyle = "blue";
+        ctx.font = "30px Mircosoft Yahei";
+
+        //2.1行、列,将行列的位置取出来放到数组中
+        var rows = "left,center,right".split(',');
+        var columns = "top,middle,bottom".split(',');
+
+        //3.
+        arr.forEach(function(v,i){
+            //i的取值是0-8，parseInt(i/3)计算行数，i%3 计算列数
+            ctx.textAlign = rows[i%3];
+            ctx.textBaseline = columns[parseInt(i/3)];
+            ctx.fillText("传智播客", v.x, v.y);
+        })
+
+    }());
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //绘制舞台
+    var stage = new Konva.Stage({
+        width:window.innerWidth,
+        height:window.innerHeight,
+        container:"dv"
+    });
+    //创建层
+    var layer = new Konva.Layer();
+    stage.add(layer);
+
+    //绘制正五边形
+    var shape = new Konva.RegularPolygon({
+        x:window.innerWidth/2,
+        y:window.innerHeight/2,
+        sides:8,//边数
+        radius:100,//半径
+        fill:"red",
+        stroke:"green",
+        strokeWidth:"12",//描边的宽度
+        shadowBlur:"0.5",
+        opacity:"0.2",
+        shadowOffsetX:3,
+        shadowOffsetY:3,
+    });
+    shape.to({
+        duration:3,
+        fill:"red",
+        easing:Konva.Easings.BackEaseIn
+    });
+    layer.add(shape);
+    shape.draggable(true);
+
+
+
+    //绘制图层
+    layer.draw();
+</script>
+</body>
+</html>

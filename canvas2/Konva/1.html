@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    //1.导入Konva
+    <script src="js/konva.js"></script>
+</head>
+<body>
+    //2.在页面中放入一个容器
+<div id="dv"></div>
+    //3.在JS中书写代码
+    <script>
+        //3.1在Konva中Konva是一个全局的命名空间(对象),所有的方法、对象、构造函数都是这个属性的成员
+        //4.创建一个舞台,创建的时候需要给他提供属性
+        var stage = new Konva.Stage({
+            width:400,
+            height:400,
+            container:"dv"
+        });
+        //5.创建一个矩形
+        var rect = new Konva.Rect({
+            x:100,
+            y:100,
+            stroke:"red",
+            fill:"blue",
+            width:200,
+            height:200
+        });
+        //6.创建层
+        var layer = new Konva.Layer();
+        //7.将矩形添加到层中，将层添加到舞台中
+        layer.add(rect);
+        stage.add(layer);
+        //8.绘图
+        layer.draw();
+    </script>
+</body>
+</html>

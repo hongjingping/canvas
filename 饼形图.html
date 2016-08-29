@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cas" width="600" height="400"></canvas>
+<script>
+    var cas = document.getElementById("cas");
+    var context = cas.getContext("2d");
+    function toRadian(angle){
+        return angle*Math.PI/180;
+    };
+    var data = [
+        {color:"red",range:[0,30]},
+        {color:"green",range:[30,120]},
+        {color:"pink",range:[120,180]},
+        {color:"orange",range:[180,230]},
+        {color:"blue",range:[230,280]},
+        {color:"purple",range:[280,360]}
+    ];
+    //画一个圆
+    var     x = cas.width/ 2,
+            y = cas.height/ 2,
+            r = 150,
+            angleStart = -90,
+            angleSpeed = 1.5,
+            angle = 0,
+           // angleHistory,
+            distance = 20;//文本设置为圆外20的距离
+    var timeId = setInterval(function () {
+        //清楚画布
+        cas.width = cas.width;
+        //从0绘制到angle的所有角度
+        angle += angleSpeed;
+        //判断，当转到360度的时候就停止计时器
+        if(angle >= 360){
+            angle = 360;
+            //停止计时器
+            clearInterval(timeId);
+            document.title = "over";
+        };
+        var angleEnd;
+        for(var i=0;i<data.length;i++){
+            //判断绘制
+            context.beginPath();
+            context.moveTo(x,y);
+            context.fillStyle=data[i].color;
+            if(angle >= data[i].range[0] && angle < data[i].range[1]){
+                angleEnd =angle;
+            }else{
+                angleEnd = data[i].range[1];
+            }
+            //设置文本
+            var txt_x = x + (r + distance)*Math.cos(toRadian(angleStart+data[i].range[0]+(angleEnd-data[i].range[0])/2));
+            var txt_y = y + (r + distance)*Math.sin(toRadian(angleStart+data[i].range[0]+(angleEnd-data[i].range[0])/2));
+            //设置对齐方式
+            if(txt_x > x){
+                context.textAlign = "left";
+            }else{
+                context.textAlign = "right";
+            }
+            if(txt_y > y){
+                context.textBaseline = "top";
+            }else{
+                context.textBaseline = "bottom";
+            }
+            context.fillText(data[i].color,txt_x,txt_y);
+
+
+            //绘制圆
+            context.arc(x,y,r,toRadian(angleStart+data[i].range[0]),toRadian(angleStart+angleEnd));
+            context.fill();
+            if(angleEnd>=angle)break;
+        };
+
+    },20)
+</script>
+</body>
+</html>

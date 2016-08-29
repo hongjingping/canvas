@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border:1px solid blue;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cas" width="800" height="400"></canvas>
+<script>
+    var cas = document.getElementById("cas");
+    var ctx = cas.getContext("2d");
+    //设置宽度
+    ctx.lineWidth=200;
+    //设置渐变，每个像素是2个单位，每个单位的颜色进行渐变
+    //X轴的变化 ，Y轴变化
+    var startX = 44;
+    for(var i=0;i<255;i++){
+        //每次循环后就要重新开始
+        ctx.beginPath();
+        //初始的位置
+        ctx.moveTo(startX,100);
+        //最终的位置
+        ctx.lineTo(startX = 40+i*2,100);
+        //颜色的设置
+        ctx.strokeStyle="rgba("+i+",0,0,0.3)";
+        ctx.stroke();
+    }
+</script>
+</body>
+</html>

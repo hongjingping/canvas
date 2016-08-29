@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/konva.js"></script>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //1.创建舞台，基本的属性：位置x、y和宽高w、h
+    var stage = new Konva.Stage({
+        width:600,
+        height:600,
+        x:100,
+        y:100,
+        container:"dv"
+    });
+    //2.创建层
+    var layer = new Konva.Layer();
+    //2.1将层加到舞台中去
+    stage.add(layer);
+    //3.创建矩形对象
+    var rect = new Konva.Rect({
+        //3.1基本的设置位置，宽高,要设置描边或者填充颜色，否则在在页面中看不见
+        width:stage.width()/2,
+        height:stage.height()/2,
+        x:stage.width()/2-stage.width()/4,
+        y:stage.width()/2-stage.width()/4,
+        stroke:"red",//描边
+        fill:"yellow",//填充
+        cornerRadius:20,//圆角矩形
+        dash:[10,5],//边框为虚线
+        rotation:45,//旋转的角度，在Konva中使用的是rotation，用的是直接就是角度（canvas中使用的是弧度，rotate）
+        scaleX:0.5,
+        scaleY:0.8,//scaleX/scaleY是进行xy轴的缩放
+
+    });
+    //4.将矩形加入到层中
+    layer.add(rect);
+    //5.绘图
+    layer.draw();
+
+
+    //6.将Konva绘制的图形转为字符串
+    var j1 = rect.toJSON();
+    var j2 = rect.toJSON();
+    var j3 = rect.toJSON();
+    console.log(j1);
+    console.log(j2);
+    console.log(j3);
+
+    //7.缓动动画
+    rect.to({
+        duration:2,
+        height:30,//2秒内高度变为300
+        x:500,//2秒内x变为500
+        easing:Konva.Easings.BackEaseIn
+    });
+
+    //8.全称方法，比上面多了一个node
+    var tween = new Konva.Tween({
+        node:rect,
+        duration:3,
+        height:50,
+        y:40,
+        x:100,
+        easing:Konva.Easings.EasingIn
+    });
+    tween.play();
+
+
+</script>
+</body>
+</html>
